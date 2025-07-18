@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bibliothèque</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bibliothèque</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <h1>Bibliothèque</h1>
 
-    <header>
-        <h1>Bibliothèque</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="livres.html">Livres</a></li>
-                <li><a href="auteurs.html">Auteurs</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <div id="bookForm">
+    <input type="text" id="titleInput" placeholder="Titre du livre" />
+    <input type="text" id="authorInput" placeholder="Auteur" />
+    <input type="number" id="yearInput" placeholder="Année de publication" />
+    <button onclick="addBook()">Ajouter</button>
+  </div>
 
-    
-    
+  <div>
+    <input type="text" id="searchInput" placeholder="Rechercher un livre..." oninput="searchBooks()"/>
+    <button onclick="searchBooks()">Rechercher un livre</button>
+  </div>
+
+  <div id="searchResult"> </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
