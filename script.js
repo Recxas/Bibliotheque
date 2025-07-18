@@ -7,15 +7,31 @@ function addBook(book) {
     library.push(book);
 }
 
+// Fonction qui ajoute un livre à partir des inputs dans la bibliothèque
+function addBookFromInputs() {
+    const title = document.getElementById('titleInput').value.trim();
+    const author = document.getElementById('authorInput').value.trim();
+    const year = document.getElementById('yearInput').value.trim();
+    const book = { title, author, year, borrowed: false };
+    addBook(book);
+    document.getElementById('titleInput').value = "";
+    document.getElementById('authorInput').value = "";
+    document.getElementById('yearInput').value = "";
+    console.log("Livre ajouté :", book);
+    console.log(library);
+}
+
 // Fonction qui recherche un livre par son titre
-function findBookByTitle(title) {
+function findBookByTitle(titre) {
   for (let i = 0; i < library.length; i++) {
-    const book = library[i];
-    if (book.title.toLowerCase().trim() === title.toLowerCase().trim()) {
-      return book;
+    if (library[i].title.toLowerCase().trim() === titre.toLowerCase().trim()) {
+      return library[i];
     }
   }
+  return null;
 }
+
+
 // Fonction qui marque le un livre comme non emprunté
 function getAvailableBooks() {
     for (let i = 0; i < library.length; i++) {
@@ -25,18 +41,32 @@ function getAvailableBooks() {
         }
       }
 }
-// Fonction qui marque le un livre comme emprunté
+// Fonction qui marque le livre comme emprunté
 function getUnavailableBooks() {
     for (let i = 0; i < library.length; i++) {
         const book = library[i];
         if (book.borrowed === true) {
                 console.log("les livres indisponibles sont",book);
-            }
+                
+                
+            }           
           }
 }
 
-// Fonction qui permet de changer le booléen borrowed d'un livre
-
+// Fonction qui permet de changer le borrowed d'un livre
+function toggleBorrowedStatus() {    
+    for (let i = 0; i < library.length; i++) {
+        const book = library[i];
+        if (book.borrowed === true ) {
+            book.borrowed = false;
+            console.log("Le livre", book.title, "a été retourné.");
+        }
+        else {
+            book.borrowed = true;
+            console.log("Le livre", book.title, "a été emprunté.");
+        }
+      }
+}
 
 
 
@@ -61,6 +91,11 @@ addBook({
 })
 
 console.log(library);
+
+
+addBookFromInputs();
 getAvailableBooks();
 getUnavailableBooks();
+
 console.log("Le livre que vous recherchez est ",findBookByTitle("le petit prince"));
+document.getElementById('result').innerHTML = "Le livre que vous recherchez est " + findBookByTitle(library).title;
