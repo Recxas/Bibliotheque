@@ -49,9 +49,7 @@ function getUnavailableBooks() {
     for (let i = 0; i < library.length; i++) {
         const book = library[i];
         if (book.borrowed === true) {
-                console.log("les livres indisponibles sont",book);
-                
-                
+                console.log("les livres indisponibles sont",book);            
             }           
           }
 }
