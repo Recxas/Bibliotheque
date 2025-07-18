@@ -22,17 +22,20 @@ function addBookFromInputs() {
 }
 
 // Fonction qui recherche un livre par son titre
-function findBookByTitle(titre) {
+function findBookByTitle() {
+  const title = document.getElementById('searchInput').value.trim();
   for (let i = 0; i < library.length; i++) {
-    if (library[i].title.toLowerCase().trim() === titre.toLowerCase().trim()) {
-      return library[i];
+    const book = library[i];
+    if (book.title.toLowerCase().trim() === title.toLowerCase()) {
+      console.log("Le livre que vous recherchez est :", book);
+      return book;
     }
   }
+  console.log("Livre non trouvé.");
   return null;
 }
 
-
-// Fonction qui marque le un livre comme non emprunté
+// Fonction qui marque un livre comme non emprunté
 function getAvailableBooks() {
     for (let i = 0; i < library.length; i++) {
         const book = library[i];
@@ -97,5 +100,6 @@ addBookFromInputs();
 getAvailableBooks();
 getUnavailableBooks();
 
-console.log("Le livre que vous recherchez est ",findBookByTitle("le petit prince"));
-document.getElementById('result').innerHTML = "Le livre que vous recherchez est " + findBookByTitle(library).title;
+const titreRecherche = document.getElementById('searchInput').value;
+console.log("Le livre que vous recherchez est ", findBookByTitle(titreRecherche));
+document.getElementById('result').innerHTML = "Le livre que vous recherchez est " + findBookByTitle(titreRecherche).book.title;
